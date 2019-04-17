@@ -1,0 +1,131 @@
+#pragma once
+
+//================== 일반 타일=======================//
+#define tileX 60
+#define tileY 60 
+#define TileMainSIZE 32
+
+#define TileSIZE 32
+
+#define basicTileX 30  //타일 x축 나눈 갯수
+#define basicTileY 16  //타일 y축 나눈 갯수
+
+//#define ATTR_UNMOVE		0x00000001
+//#define ATTR_ENEMY		0x00000002
+//#define ATTR_START		0x00000004
+//#define ATTR_END		0x00000008
+
+
+//===================iSoMetric========================//
+#define CELL_WIDTH 128		//타일의 가로크기
+#define CELL_HEIGHT 64	//타일의 세로크기
+
+#define RADIUS_WIDTH	CELL_WIDTH / 2
+#define RADIUS_HEIGHT	CELL_HEIGHT / 2
+
+#define INIT_X 2600		//초기화 좌표
+#define INIT_Y 500
+
+#define TILE_COUNT_X 200	//타일 갯수
+#define TILE_COUNT_Y 200
+
+
+#define TrTileX 6
+#define TrTileY 4
+
+//지형
+enum TERRAIN
+{
+	TR_TILE_ONE, TR_WATER, TR_TILE_TWO, TR_TILE_THREE, TR_TILE_FOUR, TR_TILE_FIVE, TR_END,
+};
+
+enum OBJECT
+{
+
+	OBJ_WALL, OBJ_WATER, OBJ_SHIRT , OBJ_FIRE, OBJ_ENEMY1, OBJ_ENEMY2, OBJ_ENEMY3,
+	OBJ_PLAYER1, OBJ_PLAYER2,
+	OBJ_NONE,
+};
+
+enum CTRL
+{
+	CTRL_SAVE,				//세이브 버튼
+	CTRL_LOAD,				//로드  버튼
+	CTRL_TERRAINDRAW,		//지형 버튼
+	CTRL_OBJDRAW,			//오브젝트 버튼
+	CTRL_ERASER,			//지우개 버튼
+	CTRL_END
+};
+
+struct tagTile
+{
+	RECT rc;
+	int FrameX;
+	int FrameY;
+	TERRAIN terrain; //지형
+	OBJECT obj; //오브젝트
+	int objFrameX; //오브젝트 번호
+	int objFrameY;
+	int selectTile;
+};
+
+
+//타일 세팅
+struct TileSetting
+{
+	RECT tilerc;
+	int tilex;
+	int tiley;
+};
+
+// 클릭한 타일 담기
+struct tilebox
+{
+	//첫타일 변수
+	int x;
+	int y;
+	//마지막 변수
+	int lastX;
+	int lastY;
+
+	// 마지막 - 첫타일 뺀 변수
+	int subtractionX;
+	int subtractionY;
+};
+
+struct iSoTile
+{
+	image* terrainImage ;		//지형 이미지
+	image* objImage;		//오브젝트 이미지
+	RECT rc;
+	POINTFLOAT Pos;
+	int FrameX;
+	int FrameY;
+	TERRAIN terrain; //지형
+	OBJECT obj; //오브젝트
+	int objFrameX; //오브젝트 번호
+	int objFrameY;
+	int selectTile;
+	int zLevel = 0;
+};
+struct isoSetting
+{
+	RECT isoRc;
+	int isoX;
+	int isoY;
+};
+
+
+struct isoBox
+{
+	//첫타일 변수
+	int x;
+	int y;
+	//마지막 변수
+	int lastX;
+	int lastY;
+
+	// 마지막 - 첫타일 뺀 변수
+	int subtractionX;
+	int subtractionY;
+};
